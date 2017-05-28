@@ -1,0 +1,10 @@
+authoritative;
+db-time-format local;
+
+default-lease-time 4800;
+max-lease-time 5600;
+
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+log-facility local7;
+
