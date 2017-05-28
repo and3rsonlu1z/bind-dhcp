@@ -7,7 +7,7 @@ DHCP_DATA_DIR=${DATA_DIR}/dhcp
 WEBMIN_DATA_DIR=${DATA_DIR}/webmin
 
 get_dhcp_interfaces() {
-INTERFACES="`ls -1 /sys/class/net | grep -v docker0 | grep -v lo`"
+IFACE="`ls -1 /sys/class/net | grep -v docker0 | grep -v lo`"
 IP="`ifconfig $INTERFACES | awk '/inet addr/{print substr($2,6)}'`"
 MASK="`ifconfig $INTERFACES | grep Mask | cut -d":" -f4`"
 
@@ -56,7 +56,7 @@ do
   if [ ${SRV_DIR} = dhcp ]; then
     if [ "${INTERFACES}" == "" ]; then
       DHCP_ENABLED="false"
-      echo "informe a interface para dhcp! serviço desativado..."
+      echo "Informe a(s) interface(s) para dhcp, serviço será desativado!"
     fi
 	if [ ! "${DHCP_ENABLED}" == "true" ]; then
 	  rm -rf ${DATA_DIR}/${SRV_DIR}
